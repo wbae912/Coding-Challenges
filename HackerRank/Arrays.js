@@ -39,7 +39,7 @@ function hourglassSum(arr) {
 
 // Arrays: Left Rotation
 function rotLeft(arr, rotations) {
-  //Work it like a stack...Pop and then shift to the back...
+  //Work it like a queue...shift and then push to the back...
 
   while(rotations > 0) {
     let firstOut = arr.shift();
@@ -49,4 +49,7 @@ function rotLeft(arr, rotations) {
   }
   return arr.join(' ');
 }
-console.log(rotLeft([1,2,3,4,5], 4));
+// BETTER SOLUTION: return arr.concat(arr.splice(0, rotations));
+// console.log(rotLeft([1,2,3,4,5], 4));
+
+
