@@ -20,6 +20,17 @@ function makeAnagram(a, b) {
 
   return removeFromLarger + removeFromSmaller;
 }
-
 // console.log(makeAnagram('fcrxzwscanmligyxyvym', 'jxwtrhvujlmrpdoqbisbwhmgpmeoke'));
 // console.log(makeAnagram('accfgilmmnrsvwxxyyyz', 'bbdeeghhijjklmmmooppqrrstuvwwx')); // BECAUSE OF THE EXTRA X...WE ARE REMOVING IT
+
+function alternatingCharacters(s) {
+  let counter = 0;
+
+  for(let i = 0; i < s.length; i++) {
+    if(s[i] === s[i + 1]) {
+      counter++;
+    }
+  }
+  return counter;
+}
+// console.log(alternatingCharacters('AAABBB'));
