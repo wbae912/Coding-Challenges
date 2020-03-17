@@ -139,7 +139,6 @@ function WordSplit(strArr) {
 // console.log(WordSplit(['abcgefd', 'a,ab,abc,abcg,b,c,dog,e,efd,zzzz']));
 
 function findMin(nums) {
-  debugger;
   // If the problem is dealing with a sorted array, we will almost always use BST
   
   let left = 0;
@@ -161,5 +160,28 @@ function findMin(nums) {
   
   return nums[left];
 }
+// console.log(findMin([3,4,5,1,2]));
 
-console.log(findMin([3,4,5,1,2]));
+function moveZeroes(nums) {
+  nums.sort((a,b) => a - b);
+  
+  let index = 0;
+  for(let i = 0; i < nums.length; i++) {
+    if(nums[i] === 0) {
+      index = i;
+    }
+  }
+  let concat = nums.splice(0, index + 1);
+
+  return nums.concat(concat);
+}
+// console.log(moveZeroes([0,1,0,3,12]));
+
+function rotateArray(nums, k) {
+  let splicedArray = nums.splice(nums.length - k, k);
+    
+  nums.unshift(...splicedArray);
+
+  return nums;
+}
+// console.log(rotateArray([1,2,3,4,5,6,7], 3));
