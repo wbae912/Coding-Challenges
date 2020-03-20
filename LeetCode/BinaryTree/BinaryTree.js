@@ -196,3 +196,28 @@ var invertTree = function(root) {
 
   return root;
 };
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 965. Univalued Binary Tree
+var isUnivalTree = function(root) {
+  //Base Case (Let's assume we have no tree):
+  if(root === null) {
+    return true; // In this instance, we are returning a Boolean, because that is end result
+  }
+ 
+  // Initialize variables
+  let leftUnival = true; // Coercing to a Boolean
+  let rightUnival = true;
+  let value = root.val; // We want all node values to match the root's value
+
+  // Recursive Case:
+  if(root.left !== null) { //Traversing the left side of the tree (DFS)
+    leftUnival = (root.left.val === value) && isUnivalTree(root.left);
+  }
+  if(root.right !== null) { // Traversing the right side of the tree
+    rightUnival = (root.right.val === value) && isUnivalTree(root.right);
+  }
+
+  return leftUnival && rightUnival;
+};
