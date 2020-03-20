@@ -48,7 +48,7 @@ var isMirror = function(leftSubtree, rightSubtree) {
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// 104. Max Depth of Binary Tree
+// 104. Max Depth of Binary Tree (Easy)
 
 /**
  * Definition for a binary tree node.
@@ -86,3 +86,45 @@ var maxDepth = function(root) {
 
   return Math.max(leftCounter, rightCounter);
 };
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 108. Convert Sorted Array to Binary Search Tree (Easy)
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @return {TreeNode}
+ */
+var sortedArrayToBST = function(nums) {
+  // Edge Case (If tree or array does not exist)
+  if(nums.length === 0) {
+    return null;
+  }
+
+  return treeConstructor(nums, 0, nums.length - 1); // We Identify the Left as the leftmost index of nums array. We set Right as the rightmost index of nums array
+};
+
+var treeConstructor = function(nums, left, right) { // left and right are INDECES of the nums array
+  // Base Case (If the leftmost index has exceeded the rightmost index, we know there are no more nodes to categorize in the tree):
+  if(left > right) {
+    return null;
+  }
+
+  let midpoint = Math.floor((left + right) / 2);
+
+  let root = new TreeNode(nums[midpoint]);
+
+  root.left = treeConstructor(nums, left, midpoint - 1);
+  root.right = treeConstructor(nums, midpoint + 1, right);
+
+  return root;
+};
+
+// NOTE: In a sorted array, the midpoint is the ROOT. Then, it evaluates the left and right subtrees, and the midpoint is again the ROOT with the left/right nodes attached if present...
