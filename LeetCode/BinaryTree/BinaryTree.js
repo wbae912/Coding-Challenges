@@ -128,3 +128,36 @@ var treeConstructor = function(nums, left, right) { // left and right are INDECE
 };
 
 // NOTE: In a sorted array, the midpoint is the ROOT. Then, it evaluates the left and right subtrees, and the midpoint is again the ROOT with the left/right nodes attached if present...
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 617. Merge Two Binary Trees (Easy)
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} t1
+ * @param {TreeNode} t2
+ * @return {TreeNode}
+ */
+var mergeTrees = function(t1, t2) {
+  // Base Case (If one of the trees/nodes is empty, obviously we just return the other one):
+  if(t1 === null) {
+    return t2;
+  }
+  if(t2 === null) {
+    return t1;
+  }
+
+  // If both trees exist, all we want to do is add the values and create new branches
+  t1.val = t1.val + t2.val;
+  t1.left = mergeTrees(t1.left, t2.left);
+  t1.right = mergeTrees(t1.right, t2.right);
+
+  return t1;
+};
