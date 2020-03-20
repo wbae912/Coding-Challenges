@@ -153,11 +153,46 @@ var mergeTrees = function(t1, t2) {
   if(t2 === null) {
     return t1;
   }
-
+  
+  // Recursive Case:
   // If both trees exist, all we want to do is add the values and create new branches
   t1.val = t1.val + t2.val;
   t1.left = mergeTrees(t1.left, t2.left);
   t1.right = mergeTrees(t1.right, t2.right);
 
   return t1;
+};
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 226. Invert Binary Tree (Easy)
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+  // Base Case(once node reaches bottom, essentially):
+  if(root === null) {
+    return root;
+  }
+
+  // Recursive Case (Breadth-First Search...Goes Level-By-Level):
+  let tempNode = root.right; // We can choose either right or left. We are just storing so we can switch values, without losing one of them during the switch
+
+  // Swapping values of the nodes
+  root.right = root.left;
+  root.left = tempNode;
+
+  invertTree(root.left);
+  invertTree(root.right);
+
+  return root;
 };
