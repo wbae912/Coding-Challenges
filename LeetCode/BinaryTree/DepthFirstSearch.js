@@ -51,3 +51,67 @@ var depthFirstSearch = function(node, leavesArray) {
     depthFirstSearch(node.right, leavesArray);
   }
 };
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 590. N-ary Tree Postorder Traversal
+/**
+ * // Definition for a Node.
+ * function Node(val,children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+/**
+ * @param {Node} root
+ * @return {number[]}
+ */
+var postorder = function(root) {
+  let postOrderArray = [];
+  let stack = [root];
+
+  if(root === null) {
+    return postOrderArray;
+  }
+
+  while(stack.length !== 0) {
+    let currNode = stack.pop();
+    postOrderArray.unshift(currNode.val);
+    for(let i = 0; i < currNode.children.length; i++) {
+      stack.push(currNode.children[i]);
+    }
+  }
+  return postOrderArray;
+};
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//589. N-ary Tree Preorder Traversal
+/**
+ * // Definition for a Node.
+ * function Node(val, children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+/**
+ * @param {Node} root
+ * @return {number[]}
+ */
+var preorder = function(root) {
+  let preOrderArray = [];
+  let stack = [];
+
+  if(root === null) {
+    return preOrderArray;
+  }
+
+  while(stack.length !== 0) {
+    let currNode = stack.pop();
+    preOrderArray.push(currNode.val);
+    for(let i = currNode.children.length - 1; i >= 0; i--) {
+      stack.push(currNode.children[i]);
+    }
+  }
+  return preOrderArray;
+};
